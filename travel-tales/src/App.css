@@ -1,1 +1,32 @@
 @import "tailwindcss";
+
+/* ===== Open Sans Local Font ===== */
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("./fonts/OpenSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("./fonts/OpenSans-Semibold.ttf") format("truetype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("./fonts/OpenSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("./fonts/OpenSans-Italic.ttf") format("truetype");
+  font-style: italic;
+}
+
+/* Apply globally */
+body {
+  font-family: "OpenSans", sans-serif;
+}
