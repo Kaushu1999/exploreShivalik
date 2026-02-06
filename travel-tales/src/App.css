@@ -30,3 +30,13 @@
 body {
   font-family: "OpenSans", sans-serif;
 }
+
+
+:root {
+  --primary: #1F3A5F;      /* Navy Blue */
+  --secondary: #4FA3D1;    /* Sky Blue */
+  --background: #FFFFFF;  /* White */
+  --section-bg: #F5F7FA;  /* Light Grey */
+  --text-dark: #1C1C1C;
+  --text-muted: #5F6C7B;
+}
