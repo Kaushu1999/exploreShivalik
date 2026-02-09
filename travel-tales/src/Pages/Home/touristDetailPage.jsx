@@ -1,11 +1,26 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMapPin, FiClock, FiStar, FiArrowRight } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 import tourismData from "../../data/tourismData.json";
+import BookingModal from "../../Components/BookingModal";
 
 export default function TourismSiteDetail() {
   const [activeUK, setActiveUK] = useState(null);
   const [activeHP, setActiveHP] = useState(null);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [bookingDestination, setBookingDestination] = useState("");
+  const navigate = useNavigate();
+
+  const openBooking = (destination = "") => {
+    setBookingDestination(destination);
+    setIsBookingModalOpen(true);
+  };
+
+  const goToContact = (opts = {}) => {
+    // opts: { subject, message }
+    navigate("/contact", { state: opts });
+  };
 
   const uttarakhand = tourismData.states.find(
     (s) => s.name === "Uttarakhand"
@@ -106,7 +121,7 @@ export default function TourismSiteDetail() {
                     <FiClock size={18} />
                     <span className="font-semibold">Best Time: {activeUK.bestTime}</span>
                   </div>
-                  <button className="btn-accent w-full">
+                  <button className="btn-accent w-full" onClick={() => openBooking(activeUK.name)}>
                     Book Your Trip
                   </button>
                 </div>
@@ -192,7 +207,7 @@ export default function TourismSiteDetail() {
                     <FiClock size={18} />
                     <span className="font-semibold">Best Time: {activeHP.bestTime}</span>
                   </div>
-                  <button className="btn-primary w-full">
+                  <button className="btn-primary w-full" onClick={() => openBooking(activeHP.name)}>
                     Plan Your Adventure
                   </button>
                 </div>
@@ -237,6 +252,7 @@ export default function TourismSiteDetail() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-white text-[#1F3A5F] px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-xl transition"
+              onClick={() => openBooking()}
             >
               Book Now
             </motion.button>
@@ -244,12 +260,21 @@ export default function TourismSiteDetail() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="border-2 border-white text-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-[#1F3A5F] transition"
+              onClick={() => goToContact({ subject: 'custom-quote', message: 'I need a custom quote for a trip' })}
             >
               Get Custom Quote
             </motion.button>
           </div>
         </div>
       </motion.div>
+
+      {/* BOOKING MODAL */}
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        destination={bookingDestination}
+        prefilledSubject="booking"
+      />
 
     </div>
   );

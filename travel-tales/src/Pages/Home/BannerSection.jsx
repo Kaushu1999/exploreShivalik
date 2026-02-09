@@ -163,13 +163,7 @@ export default function BannerSection() {
         ))}
       </Swiper>
 
-      {/* Custom Navigation Buttons */}
-      <button className="swiper-button-prev absolute left-6 top-1/2 transform -translate-y-1/2 z-30 w-12 h-12 bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full flex items-center justify-center text-white text-2xl transition-all duration-300 border border-white/30">
-        &#8249;
-      </button>
-      <button className="swiper-button-next absolute right-6 top-1/2 transform -translate-y-1/2 z-30 w-12 h-12 bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full flex items-center justify-center text-white text-2xl transition-all duration-300 border border-white/30">
-        &#8250;
-      </button>
+
     </div>
   );
 }

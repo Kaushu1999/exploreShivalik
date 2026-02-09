@@ -6,23 +6,7 @@ function Footer() {
 
   return (
     <footer className="bg-[#1F3A5F] text-white mt-20">
-      {/* Newsletter Section */}
-      <div className="bg-[#2F73B9] py-12">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h3 className="text-2xl font-bold mb-4">Subscribe to Our Newsletter</h3>
-          <p className="text-gray-200 mb-6">Get travel tips, exclusive offers & destination guides delivered to your inbox</p>
-          <div className="flex max-w-md mx-auto gap-2">
-            <input 
-              type="email" 
-              placeholder="Enter your email" 
-              className="flex-1 px-4 py-3 rounded-lg text-gray-800 focus:outline-none"
-            />
-            <button className="bg-[#F59E0B] hover:bg-[#E59E0B] text-white px-6 py-3 rounded-lg font-semibold transition">
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </div>
+      
 
       {/* Main Footer Content */}
       <div className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-12">

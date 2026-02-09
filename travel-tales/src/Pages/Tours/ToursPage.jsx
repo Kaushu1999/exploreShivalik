@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FiMapPin, FiCalendar, FiUsers, FiDollarSign, FiArrowRight, FiCheck } from "react-icons/fi";
+import BookingModal from "../../Components/BookingModal";
 
 export default function ToursPage() {
   const [selectedDuration, setSelectedDuration] = useState("all");
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [bookingDestination, setBookingDestination] = useState("");
+
+  const openBooking = (tourName = "") => {
+    setBookingDestination(tourName);
+    setIsBookingModalOpen(true);
+  };
 
   const tours = [
     {
@@ -192,6 +200,7 @@ export default function ToursPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="w-full btn-primary flex items-center justify-center gap-2"
+                  onClick={() => openBooking(tour.name)}
                 >
                   Book Now
                   <FiArrowRight />
@@ -252,6 +261,14 @@ export default function ToursPage() {
           Contact Our Experts
         </motion.button>
       </div>
+
+      {/* BOOKING MODAL */}
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        destination={bookingDestination}
+        prefilledSubject="booking"
+      />
     </div>
   );
 }

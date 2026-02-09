@@ -1,6 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FiPhone, FiMail, FiMapPin, FiClock, FiSend } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
+import { useLocation } from "react-router-dom";
+
+// Initialize EmailJS (replace with your Public Key from EmailJS dashboard)
+emailjs.init("zZpiZM4Ep1lsPX9sw");
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -11,18 +17,109 @@ export default function ContactPage() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location?.state) {
+      const { subject, message } = location.state;
+      setFormData((prev) => ({
+        ...prev,
+        subject: subject || prev.subject,
+        message: message || prev.message,
+      }));
+    }
+  }, [location]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setError(""); // Clear error when user starts typing
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
-    setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-    setTimeout(() => setSubmitted(false), 4000);
+    setLoading(true);
+    setError("");
+
+    try {
+      console.log("📤 Sending email to owner...");
+      console.log("Form Data:", formData);
+      
+      // Send email to owner
+      await emailjs.send(
+        "service_xf5d4lj", // Service ID from EmailJS
+        "template_13igutl", // Template ID from EmailJS
+        {
+          // standard fields our template uses
+          name: formData.name,
+          message: formData.message,
+          title: formData.subject,
+          email: formData.email,
+
+          // additional helpful fields
+          to_email: "kaushalmanral001@gmail.com",
+          from_name: formData.name,
+          from_email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          reply_to: formData.email,
+        }
+      );
+      console.log("✅ Email to owner sent successfully!");
+
+      // Send confirmation email to user
+      console.log("📤 Sending confirmation email to user...");
+      await emailjs.send(
+        "service_xf5d4lj",
+        "template_13igutl", // Separate template for confirmation
+        {
+          // match confirmation template variables
+          name: formData.name,
+          message: formData.message,
+          title: formData.subject,
+          email: formData.email,
+
+          to_email: formData.email,
+          user_name: formData.name,
+          user_subject: formData.subject,
+        }
+      );
+      console.log("✅ Confirmation email sent successfully!");
+
+      setSubmitted(true);
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+      setTimeout(() => setSubmitted(false), 4000);
+    } catch (err) {
+      console.error("❌ Error sending email:", err);
+      console.error("Error Object:", err);
+      console.error("Error Message:", err?.message);
+      console.error("Error Status:", err?.status);
+      console.error("Error Text:", err?.text);
+      console.error("Full Error Details:", {
+        message: err?.message,
+        status: err?.status,
+        text: err?.text,
+        toString: err?.toString(),
+      });
+      
+      let errorMessage = "Failed to send message";
+      if (err?.message) {
+        errorMessage = `${errorMessage}: ${err.message}`;
+      } else if (err?.text) {
+        errorMessage = `${errorMessage}: ${err.text}`;
+      } else if (err?.status) {
+        errorMessage = `${errorMessage}: Status ${err.status}`;
+      } else if (typeof err === "string") {
+        errorMessage = `${errorMessage}: ${err}`;
+      }
+      
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const contactInfo = [
@@ -63,6 +160,17 @@ export default function ContactPage() {
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
+  };
+
+  // WhatsApp config — number must be in E.164 without the plus sign
+  const whatsappNumber = "918449573022"; // +91 8449573022 -> 918449573022
+  const getWhatsAppLink = (data) => {
+    const name = data?.name || "";
+    const subject = data?.subject || "";
+    const message = data?.message || "";
+    const email = data?.email || "";
+    const text = `Hi, I am ${name}. ${subject ? "Subject: " + subject + "." : ""} ${message} ${email ? "(Email: " + email + ")" : ""}`;
+    return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
   };
 
   return (
@@ -132,6 +240,24 @@ export default function ContactPage() {
               </motion.div>
             )}
 
+            {/* Error Message */}
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="mb-6 bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-lg"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">✕</span>
+                  <div>
+                    <p className="font-bold">Error</p>
+                    <p className="text-sm">{error}</p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-gray-700 font-semibold mb-2">Your Name</label>
@@ -141,7 +267,8 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#F59E0B] focus:outline-none transition"
+                  disabled={loading}
+                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#F59E0B] focus:outline-none transition disabled:bg-gray-100"
                   placeholder="Enter your name"
                 />
               </div>
@@ -207,10 +334,10 @@ export default function ContactPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="submit"
-                disabled={submitted}
+                disabled={submitted || loading}
                 className="w-full btn-accent flex items-center justify-center gap-2 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {submitted ? "Sending..." : "Send Message"}
+                {loading ? "Sending..." : submitted ? "Sending..." : "Send Message"}
                 <FiSend />
               </motion.button>
             </form>
@@ -299,6 +426,18 @@ export default function ContactPage() {
           Get Started Now
         </motion.button>
       </div>
+
+      {/* Floating WhatsApp Button */}
+      <a
+        href={getWhatsAppLink(formData)}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Chat on WhatsApp"
+        className="fixed bottom-6 right-6 z-50 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-xl flex items-center justify-center transition-transform transform hover:scale-105"
+      >
+        <FaWhatsapp className="text-2xl" />
+      </a>
+
     </div>
   );
 }
