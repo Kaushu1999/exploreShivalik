@@ -1,8 +1,97 @@
 import React from 'react'
+import { FiFacebook, FiInstagram, FiTwitter, FiMail, FiPhone, FiMapPin } from 'react-icons/fi'
 
 function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <div>Footer</div>
+    <footer className="bg-[#1F3A5F] text-white mt-20">
+      {/* Newsletter Section */}
+      <div className="bg-[#2F73B9] py-12">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <h3 className="text-2xl font-bold mb-4">Subscribe to Our Newsletter</h3>
+          <p className="text-gray-200 mb-6">Get travel tips, exclusive offers & destination guides delivered to your inbox</p>
+          <div className="flex max-w-md mx-auto gap-2">
+            <input 
+              type="email" 
+              placeholder="Enter your email" 
+              className="flex-1 px-4 py-3 rounded-lg text-gray-800 focus:outline-none"
+            />
+            <button className="bg-[#F59E0B] hover:bg-[#E59E0B] text-white px-6 py-3 rounded-lg font-semibold transition">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Footer Content */}
+      <div className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-12">
+        {/* Brand */}
+        <div>
+          <h4 className="text-xl font-bold mb-4">Explore Shivalik</h4>
+          <p className="text-gray-300 text-sm mb-6">
+            Your gateway to the most enchanting destinations in the Himalayas. Discover beauty, culture, and adventure.
+          </p>
+          <div className="flex gap-4">
+            <a href="#" className="hover:text-[#F59E0B] transition text-lg"><FiFacebook /></a>
+            <a href="#" className="hover:text-[#F59E0B] transition text-lg"><FiInstagram /></a>
+            <a href="#" className="hover:text-[#F59E0B] transition text-lg"><FiTwitter /></a>
+          </div>
+        </div>
+
+        {/* Quick Links */}
+        <div>
+          <h4 className="text-lg font-bold mb-6">Quick Links</h4>
+          <ul className="space-y-3">
+            <li><a href="/" className="text-gray-300 hover:text-[#F59E0B] transition">Home</a></li>
+            <li><a href="/destinations" className="text-gray-300 hover:text-[#F59E0B] transition">Destinations</a></li>
+            <li><a href="/tours" className="text-gray-300 hover:text-[#F59E0B] transition">Tours & Packages</a></li>
+            <li><a href="/about" className="text-gray-300 hover:text-[#F59E0B] transition">About Us</a></li>
+          </ul>
+        </div>
+
+        {/* Destinations */}
+        <div>
+          <h4 className="text-lg font-bold mb-6">Popular Destinations</h4>
+          <ul className="space-y-3">
+            <li><a href="#" className="text-gray-300 hover:text-[#F59E0B] transition">Uttarakhand</a></li>
+            <li><a href="#" className="text-gray-300 hover:text-[#F59E0B] transition">Himachal Pradesh</a></li>
+            <li><a href="#" className="text-gray-300 hover:text-[#F59E0B] transition">Nainital</a></li>
+            <li><a href="#" className="text-gray-300 hover:text-[#F59E0B] transition">Rishikesh</a></li>
+          </ul>
+        </div>
+
+        {/* Contact */}
+        <div>
+          <h4 className="text-lg font-bold mb-6">Contact Info</h4>
+          <div className="space-y-4">
+            <div className="flex items-start gap-3">
+              <FiPhone className="text-[#F59E0B] mt-1" />
+              <div>
+                <p className="text-gray-300 text-sm">+91 8449573022</p>
+                <p className="text-gray-400 text-xs">Mon-Fri, 9AM-6PM IST</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <FiMail className="text-[#F59E0B] mt-1" />
+              <p className="text-gray-300 text-sm">kaushalmanral001@gmail.com</p>
+            </div>
+            <div className="flex items-start gap-3">
+              <FiMapPin className="text-[#F59E0B] mt-1" />
+              <p className="text-gray-300 text-sm">Himalayas, India</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div className="border-t border-gray-700"></div>
+
+      {/* Copyright */}
+      <div className="max-w-6xl mx-auto px-6 py-6 text-center text-gray-400 text-sm">
+        <p>&copy; {currentYear} Explore Shivalik. All rights reserved. | Privacy Policy | Terms of Service</p>
+      </div>
+    </footer>
   )
 }
 

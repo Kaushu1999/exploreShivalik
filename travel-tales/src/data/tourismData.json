@@ -1,0 +1,162 @@
+{
+  "states": [
+    {
+      "name": "Uttarakhand",
+      "tagline": "Land of Gods & Himalayan Beauty",
+      "description": "Uttarakhand is known for its sacred temples, scenic hill stations, peaceful valleys, and adventure destinations. From spiritual journeys like Char Dham to lakes, forests, and snow-covered mountains, it offers a perfect blend of devotion and nature.",
+      "popularPlaces": [
+        {
+          "id": "nainital",
+          "name": "Nainital",
+          "title": "City of Lakes",
+          "description": "A beautiful hill station surrounded by mountains and centered around the famous Naini Lake. Perfect for families, couples, and nature lovers.",
+          "bestTime": "March to June, September to November",
+          "activities": [
+            "Boating in Naini Lake",
+            "Shopping at Mall Road",
+            "Visit Naina Devi Temple",
+            "Cable car ride",
+            "Trekking to Tiffin Top"
+          ]
+        },
+        {
+          "id": "rishikesh",
+          "name": "Rishikesh",
+          "title": "Yoga Capital of the World",
+          "description": "A spiritual and adventure destination on the banks of the Ganga River. Famous for yoga, river rafting, and Ganga Aarti.",
+          "bestTime": "September to April",
+          "activities": [
+            "River rafting",
+            "Attend Ganga Aarti",
+            "Bungee jumping",
+            "Yoga sessions",
+            "Visit Laxman Jhula & Ram Jhula"
+          ]
+        },
+        {
+          "id": "mussoorie",
+          "name": "Mussoorie",
+          "title": "Queen of Hills",
+          "description": "A romantic hill station with beautiful viewpoints, waterfalls, and pleasant weather.",
+          "bestTime": "March to June",
+          "activities": [
+            "Visit Kempty Falls",
+            "Walk on Mall Road",
+            "Gun Hill ropeway",
+            "Photography at viewpoints"
+          ]
+        },
+        {
+          "id": "auli",
+          "name": "Auli",
+          "title": "Skiing Paradise",
+          "description": "A famous winter destination known for snow, skiing, and breathtaking Himalayan views.",
+          "bestTime": "December to February",
+          "activities": [
+            "Skiing",
+            "Snow trekking",
+            "Cable car ride",
+            "Mountain photography"
+          ]
+        }
+      ],
+      "spiritualTours": {
+        "name": "Char Dham Yatra",
+        "description": "A sacred pilgrimage covering four holy temples in Uttarakhand believed to bring spiritual peace and salvation.",
+        "places": [
+          {
+            "name": "Kedarnath",
+            "about": "One of the holiest temples of Lord Shiva located in the Himalayas."
+          },
+          {
+            "name": "Badrinath",
+            "about": "Famous temple dedicated to Lord Vishnu visited by thousands of devotees."
+          },
+          {
+            "name": "Gangotri",
+            "about": "Origin of the holy river Ganga."
+          },
+          {
+            "name": "Yamunotri",
+            "about": "Origin of the Yamuna river and sacred pilgrimage site."
+          }
+        ]
+      }
+    },
+
+    {
+      "name": "Himachal Pradesh",
+      "tagline": "Heaven in the Hills",
+      "description": "Himachal Pradesh is famous for snow-covered mountains, peaceful valleys, adventure sports, and spiritual retreats. It is a perfect destination for honeymoon, adventure, and nature lovers.",
+      "popularPlaces": [
+        {
+          "id": "manali",
+          "name": "Manali",
+          "title": "Snow & Adventure Hub",
+          "description": "A top destination for honeymooners and adventure lovers surrounded by mountains and rivers.",
+          "bestTime": "October to February for snow, March to June for pleasant weather",
+          "activities": [
+            "Snow activities",
+            "Paragliding",
+            "River rafting",
+            "Visit Solang Valley",
+            "Rohtang Pass trip"
+          ]
+        },
+        {
+          "id": "shimla",
+          "name": "Shimla",
+          "title": "Queen of Hills",
+          "description": "A historic hill station known for colonial buildings, shopping streets, and scenic views.",
+          "bestTime": "March to June, December for snow",
+          "activities": [
+            "Walk on Mall Road",
+            "Toy train ride",
+            "Visit Kufri",
+            "Photography at Ridge"
+          ]
+        },
+        {
+          "id": "kasol",
+          "name": "Kasol",
+          "title": "Mini Israel of India",
+          "description": "A peaceful village known for trekking, nature, and riverside camping.",
+          "bestTime": "March to June",
+          "activities": [
+            "Camping",
+            "Riverside walk",
+            "Trek to Kheerganga",
+            "Cafe hopping"
+          ]
+        },
+        {
+          "id": "dharamshala",
+          "name": "Dharamshala",
+          "title": "Spiritual Retreat",
+          "description": "Home of the Dalai Lama known for monasteries, Tibetan culture, and peaceful environment.",
+          "bestTime": "March to June, September to November",
+          "activities": [
+            "Visit monasteries",
+            "Meditation",
+            "Triund trek",
+            "Explore McLeodganj"
+          ]
+        }
+      ],
+      "spiritualPlaces": [
+        {
+          "name": "Manikaran Sahib",
+          "about": "Sacred Sikh pilgrimage site known for hot water springs."
+        },
+        {
+          "name": "Jwala Ji Temple",
+          "about": "Temple with eternal natural flame."
+        },
+        {
+          "name": "Chintpurni Temple",
+          "about": "One of the Shakti Peeth temples in Himachal."
+        }
+      ]
+    }
+  ]
+}
