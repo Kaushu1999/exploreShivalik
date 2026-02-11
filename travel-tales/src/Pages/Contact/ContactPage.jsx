@@ -60,7 +60,7 @@ export default function ContactPage() {
           email: formData.email,
 
           // additional helpful fields
-          to_email: "kaushalmanral001@gmail.com",
+          to_email: "exploreshivaliks@gmail.com",
           from_name: formData.name,
           from_email: formData.email,
           phone: formData.phone,
@@ -126,19 +126,19 @@ export default function ContactPage() {
     {
       icon: <FiPhone className="w-6 h-6" />,
       title: "Phone",
-      details: "+91 8449573022",
+      details: "+91 81910 04719, +91 78953 32199",
       subtext: "Mon-Fri, 9AM-6PM IST",
     },
     {
       icon: <FiMail className="w-6 h-6" />,
       title: "Email",
-      details: "kaushalmanral001@gmail.com",
+      details: "exploreshivaliks@gmail.com",
       subtext: "We reply within 24 hours",
     },
     {
       icon: <FiMapPin className="w-6 h-6" />,
       title: "Office",
-      details: "Himalayas, India",
+      details: "Indra Colony, Lakhanpur Road, Ramnagar, Nainital 244715, Uttarakhand",
       subtext: "Adventure Capital",
     },
     {
@@ -163,7 +163,7 @@ export default function ContactPage() {
   };
 
   // WhatsApp config — number must be in E.164 without the plus sign
-  const whatsappNumber = "918449573022"; // +91 8449573022 -> 918449573022
+  const whatsappNumber = "918191004719"; // +91 81910 04719 -> 918191004719
   const getWhatsAppLink = (data) => {
     const name = data?.name || "";
     const subject = data?.subject || "";
@@ -381,7 +381,7 @@ export default function ContactPage() {
                 We value your time. Our team responds to all inquiries within 24 hours.
               </p>
               <p className="text-blue-100 font-semibold">
-                For urgent matters, call us directly at +91 8449573022
+                For urgent matters, call us directly at +91 81910 04719
               </p>
             </div>
           </motion.div>

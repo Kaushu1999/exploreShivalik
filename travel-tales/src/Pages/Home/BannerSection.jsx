@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import { motion } from "framer-motion";
@@ -45,8 +45,17 @@ export default function BannerSection() {
     },
   };
 
+  useEffect(() => {
+    const setVh = () => {
+      document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+    };
+    setVh();
+    window.addEventListener('resize', setVh);
+    return () => window.removeEventListener('resize', setVh);
+  }, []);
+
   return (
-    <div className="w-full h-[80vh] relative overflow-hidden">
+    <div className="w-full relative overflow-hidden" style={{ height: 'calc(var(--vh, 1vh) * 80)', minHeight: '400px' }}>
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         navigation={{ 
@@ -69,7 +78,9 @@ export default function BannerSection() {
                   <img
                     key={i}
                     src={img}
-                    className="w-full h-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                    className="w-full h-full object-cover block"
                     alt="travel"
                   />
                 ))}

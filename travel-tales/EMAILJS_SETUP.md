@@ -23,7 +23,7 @@ No backend needed! Send emails directly from the frontend using EmailJS.
 1. Go to **Email Templates**
 2. Click **Create New Template**
 3. Name it: `contact_form_lead`
-4. Set **To Email**: `kaushalmanral001@gmail.com`
+4. Set **To Email**: `exploreshivaliks@gmail.com`
 5. Use this template:
 
 ```
@@ -63,7 +63,7 @@ We have received your message regarding: {{user_subject}}
 Our team will get back to you within 24 hours.
 
 In the meantime, if you have any urgent questions, feel free to call us at:
-📞 +91 8449573022
+📞 +91 81910 04719
 
 Best regards,
 Explore Shivalik Team

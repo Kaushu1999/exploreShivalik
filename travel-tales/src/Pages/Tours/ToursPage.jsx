@@ -180,10 +180,6 @@ export default function ToursPage() {
                     <FiUsers className="text-[#4FA3D1]" />
                     <span>{tour.group} Persons</span>
                   </div>
-                  <div className="flex items-center gap-2 text-[#F59E0B] font-bold text-lg">
-                    <FiDollarSign />
-                    <span>₹{tour.price.toLocaleString()}</span>
-                  </div>
                 </div>
 
                 <div className="border-t pt-4 mb-4">

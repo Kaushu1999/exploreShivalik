@@ -29,7 +29,7 @@ export default function AboutPage() {
   ];
 
   const team = [
-    { name: "Rajesh Kumar", role: "Founder & CEO", emoji: "👨‍💼" },
+    { name: "Saurabh Suyal", role: "Founder & CEO", emoji: "👨‍💼" },
     { name: "Priya Sharma", role: "Head of Operations", emoji: "👩‍💼" },
     { name: "Arjun Singh", role: "Travel Consultant", emoji: "👨‍🚀" },
     { name: "Sneha Patel", role: "Customer Care Manager", emoji: "👩‍💻" },
@@ -74,6 +74,9 @@ export default function AboutPage() {
               Today, we are proud to be the most recommended travel platform for exploring the sacred
               and adventurous destinations of North India.
             </p>
+            <div className="mt-6">
+              <p className="text-gray-700">Founder: <span className="text-[#F59E0B] font-semibold">Saurabh Suyal</span></p>
+            </div>
           </motion.div>
 
           <motion.div

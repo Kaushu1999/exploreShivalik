@@ -29,7 +29,7 @@ Then edit the `.env` file with your credentials:
    ```
    EMAIL_USER=your-gmail@gmail.com
    EMAIL_PASSWORD=your-16-char-app-password
-   OWNER_EMAIL=kaushalmanral001@gmail.com
+   OWNER_EMAIL=exploreshivaliks@gmail.com
    ```
 
 ### SMS Setup (Twilio - Optional)
@@ -44,7 +44,7 @@ Then edit the `.env` file with your credentials:
    TWILIO_ACCOUNT_SID=your-account-sid
    TWILIO_AUTH_TOKEN=your-auth-token
    TWILIO_PHONE_NUMBER=+1XXXXXXXXXX
-   OWNER_PHONE=+91XXXXXXXXXX
+   OWNER_PHONE=+91 8191004719
    ```
 
 ## Step 3: Run Both Frontend and Backend

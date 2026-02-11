@@ -1,160 +1,168 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { FiMapPin, FiUsers, FiCalendar, FiStar, FiArrowRight, FiFilter } from "react-icons/fi";
-import tourismData from "../../data/tourismData.json";
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from "framer-motion";
+import { FiCalendar, FiUsers, FiFilter } from "react-icons/fi";
+import { useLocation } from "react-router-dom";
+import { Uttarakhand, Himachal, Common } from "../../constants/images";
+import PlaceModal from "../../Components/PlaceModal";
+import exploreData from "../../constants/exploreData";
+
+/* 🔹 CARD ANIMATION */
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: 40 },
+};
 
 export default function DestinationPage() {
   const [selectedState, setSelectedState] = useState("Uttarakhand");
-  const allPlaces = selectedState === "Uttarakhand" 
-    ? tourismData.states[0].popularPlaces 
-    : tourismData.states[1].popularPlaces;
+  const [selectedPlace, setSelectedPlace] = useState(null);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
+  /* 🔍 SEARCH FROM URL */
+  const search = new URLSearchParams(useLocation().search).get("search");
+
+  const tourismData = [
+    {
+      state: "Uttarakhand",
+      places: [
+        { id: 1, name: "Haridwar", title: "Gateway to Gods", image: Uttarakhand.haridwarImg, bestTime: "Oct to April", activities: ["Ganga Aarti"] },
+        { id: 2, name: "Rishikesh", title: "Yoga Capital", image: Uttarakhand.rishikeshImg, bestTime: "Sept to April", activities: ["Rafting", "Yoga"] },
+        { id: 3, name: "Mussoorie", title: "Queen of Hills", image: Uttarakhand.mussoorieImg, bestTime: "March to June", activities: ["Sightseeing"] },
+        { id: 4, name: "Dhanaulti", title: "Peaceful Hilltop", image: Uttarakhand.dhanaultiImg, bestTime: "March to June", activities: ["Nature Walks"] },
+        { id: 5, name: "Kanatal", title: "Scenic Ridge", image: Uttarakhand.kanatalmg, bestTime: "March to June", activities: ["Camping"] },
+        { id: 6, name: "Tehri", title: "Lakes & Adventure", image: Uttarakhand.tehriImg, bestTime: "Oct to March", activities: ["Water Sports"] },
+        { id: 7, name: "Rudraprayag", title: "Confluence Town", image: Common.rudranathImg, bestTime: "March to June", activities: ["Sightseeing"] },
+        { id: 8, name: "Devprayag", title: "Sacred Confluence", image: Common.devprayagImg, bestTime: "Oct to April", activities: ["Spiritual Visit"] },
+        { id: 9, name: "Auli", title: "Skiing Paradise", image: Uttarakhand.auliImg, bestTime: "Dec to March", activities: ["Skiing"] },
+        { id: 10, name: "Chopta", title: "Trek Gateway (Tungnath)", image: Common.tungnathImg, bestTime: "Apr to Jun", activities: ["Trekking"] },
+        { id: 11, name: "Lansdowne", title: "Quiet Cantonment", image: Uttarakhand.lansdowneImg, bestTime: "March to June", activities: ["Relaxation"] },
+      ],
     },
-  };
+    {
+      state: "Himachal",
+      places: [
+        { id: 101, name: "Shimla", title: "Mall Road & Ridge", image: Himachal.shimlaImg, bestTime: "March to June", activities: ["Sightseeing"] },
+        { id: 102, name: "Manali", title: "Solang Valley", image: Himachal.manaliImg, bestTime: "Oct to Feb", activities: ["Snow"] },
+        { id: 103, name: "Kasol", title: "Parvati Valley", image: Himachal.kasolImg, bestTime: "March to June", activities: ["Trekking"] },
+        { id: 104, name: "Spiti Valley", title: "Cold Desert", image: Himachal.spitiImg, bestTime: "June to Sept", activities: ["Road Trip"] },
+        { id: 105, name: "Jibhi", title: "Offbeat Village", image: Himachal.jibhiImg, bestTime: "March to June", activities: ["Nature Walk"] },
+        { id: 106, name: "Kalpa", title: "Kinnaur Views", image: Himachal.kalpaImg, bestTime: "April to June", activities: ["Sightseeing"] },
+        { id: 107, name: "Dharamshala", title: "Tibetan Culture", image: Himachal.dharamshalaImg, bestTime: "March to June", activities: ["Monastery"] },
+        { id: 108, name: "Dalhousie", title: "Mini Switzerland", image: Himachal.dalhousieImg, bestTime: "March to June", activities: ["Photography"] },
+        { id: 109, name: "Chandigarh", title: "Gateway City", image: Common.chandiImg, bestTime: "Year Round", activities: ["City Tours"] },
+        { id: 110, name: "Amritsar", title: "Golden Temple", image: Common.originImg, bestTime: "Oct to March", activities: ["Pilgrimage", "Heritage"] },
+      ],
+    },
+  ];
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
+  const currentState = tourismData.find(
+    (item) => item.state === selectedState
+  );
+
+  const places = currentState?.places || [];
+
+  /* 🔍 SEARCH FILTER (ONLY ADDITION) */
+  const filteredPlaces = places.filter((place) =>
+    search
+      ? place.name.toLowerCase().includes(search.toLowerCase()) ||
+        place.title.toLowerCase().includes(search.toLowerCase())
+      : true
+  );
 
   return (
+    <>
     <div className="min-h-screen bg-gradient-to-b from-[#F5F7FA] to-white">
-      {/* HERO */}
-      <div className="bg-gradient-to-r from-[#1F3A5F] to-[#2F73B9] text-white py-20">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-5xl md:text-6xl font-bold mb-4">Explore Destinations</h1>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-              Discover breathtaking locations across Uttarakhand and Himachal Pradesh
-            </p>
-          </motion.div>
-        </div>
+      {/* HEADER */}
+      <div className="bg-gradient-to-r from-[#1F3A5F] to-[#2F73B9] text-white py-16 text-center">
+        <h1 className="text-5xl font-bold">Explore Destinations</h1>
+        <p className="text-blue-100 mt-2">Uttarakhand & Himachal Pradesh</p>
+        {selectedState === "Uttarakhand" && (
+          <p className="text-yellow-200 mt-2 font-semibold">Uttarakhand Destination – Garhwal</p>
+        )}
       </div>
 
-      {/* FILTERS */}
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        <div className="flex items-center gap-4 mb-8">
-          <FiFilter className="text-[#1F3A5F] text-2xl" />
-          <span className="text-gray-600 font-semibold">Filter by State:</span>
-          <div className="flex gap-3">
-            {["Uttarakhand", "Himachal Pradesh"].map((state) => (
-              <motion.button
-                key={state}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setSelectedState(state)}
-                className={`px-6 py-2 rounded-full font-semibold transition ${
-                  selectedState === state
-                    ? "bg-[#F59E0B] text-white shadow-lg"
-                    : "bg-white text-gray-700 border-2 border-gray-300 hover:border-[#F59E0B]"
-                }`}
-              >
-                {state}
-              </motion.button>
-            ))}
-          </div>
-        </div>
-
-        {/* DESTINATIONS GRID */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {allPlaces.map((place, idx) => (
-            <motion.div
-              key={place.id}
-              variants={itemVariants}
-              whileHover={{ y: -10 }}
-              className="card-premium group overflow-hidden"
+      {/* FILTER */}
+      <div className="max-w-6xl mx-auto px-6 py-10">
+        <div className="flex items-center gap-4 mb-10">
+          <FiFilter className="text-2xl text-[#1F3A5F]" />
+          {tourismData.map((item) => (
+            <button
+              key={item.state}
+              onClick={() => setSelectedState(item.state)}
+              className={`px-6 py-2 rounded-full font-semibold ${
+                selectedState === item.state
+                  ? "bg-[#F59E0B] text-white"
+                  : "bg-gray-200"
+              }`}
             >
-              {/* Image Placeholder */}
-              <div className="h-48 bg-gradient-to-br from-[#2F73B9] to-[#4FA3D1] relative overflow-hidden">
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  className="w-full h-full flex items-center justify-center text-white text-4xl"
-                >
-                  📍
-                </motion.div>
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-[#1F3A5F] mb-2">{place.name}</h3>
-                <p className="text-[#F59E0B] font-semibold mb-3">{place.title}</p>
-                <p className="text-gray-600 text-sm mb-4">{place.description}</p>
-
-                <div className="space-y-3 mb-4 text-sm">
-                  <div className="flex items-center gap-2 text-gray-700">
-                    <FiCalendar className="text-[#F59E0B]" />
-                    <span>{place.bestTime}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-700">
-                    <FiUsers className="text-[#4FA3D1]" />
-                    <span>{place.activities.length} Activities Available</span>
-                  </div>
-                </div>
-
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full btn-accent flex items-center justify-center gap-2"
-                >
-                  Explore More
-                  <FiArrowRight />
-                </motion.button>
-              </div>
-            </motion.div>
+              {item.state}
+            </button>
           ))}
-        </motion.div>
-      </div>
+        </div>
 
-      {/* STATS */}
-      <div className="bg-white py-16 mt-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            {[
-              { icon: "📍", label: "Destinations", value: "50+" },
-              { icon: "🗻", label: "Mountains", value: "100+" },
-              { icon: "🏛️", label: "Temples", value: "200+" },
-              { icon: "👥", label: "Travelers", value: "10K+" },
-            ].map((stat, idx) => (
+        {/* CARDS */}
+        <AnimatePresence>
+          <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredPlaces.map((place) => (
               <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
+                key={place.id}
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                whileHover={{ y: -10 }}
+                className="bg-white rounded-2xl shadow-lg overflow-hidden"
               >
-                <div className="text-4xl mb-2">{stat.icon}</div>
-                <div className="text-3xl font-bold text-[#1F3A5F]">{stat.value}</div>
-                <div className="text-gray-600">{stat.label}</div>
+                <img src={place.image} alt={place.name} className="h-52 w-full object-cover" />
+
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-[#1F3A5F]">{place.name}</h3>
+                  <p className="text-[#F59E0B] font-semibold">{place.title}</p>
+
+                  <div className="mt-4 text-sm space-y-2">
+                    <div className="flex items-center gap-2">
+                      <FiCalendar /> {place.bestTime}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiUsers /> {place.activities.length} Activities
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      // prefer detailed data from exploreData if available
+                      const detailed = (exploreData[selectedState] || []).find(
+                        (p) => p.id === place.id || p.name === place.name
+                      );
+                      if (detailed) {
+                        setSelectedPlace(detailed);
+                      } else {
+                        // fallback: convert activities strings to objects without images
+                        const fallback = {
+                          ...place,
+                          heroImage: place.image,
+                          activities: (place.activities || []).map((a) => (typeof a === 'string' ? { name: a } : a)),
+                        };
+                        setSelectedPlace(fallback);
+                      }
+                    }}
+                    className="mt-5 w-full bg-[#F59E0B] text-white py-2 rounded-full font-semibold"
+                  >
+                    Explore More
+                  </button>
+                </div>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </div>
-
-      {/* CTA */}
-      <div className="bg-gradient-to-r from-[#1F3A5F] to-[#4FA3D1] text-white py-16 text-center">
-        <h2 className="text-3xl font-bold mb-4">Ready to Visit?</h2>
-        <p className="mb-6 text-blue-100">Book your dream destination with our expert guides today</p>
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="bg-[#F59E0B] hover:bg-[#E59E0B] text-white px-8 py-3 rounded-full font-bold"
-        >
-          Plan Your Trip
-        </motion.button>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
+    {selectedPlace && (
+      <PlaceModal
+        place={selectedPlace}
+        onClose={() => setSelectedPlace(null)}
+      />
+    )}
+    </>
   );
 }
