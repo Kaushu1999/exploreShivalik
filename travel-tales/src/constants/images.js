@@ -43,8 +43,8 @@ import shojaImg from "../assets/himachal/shoja.webp";
 import kalpaImg from "../assets/himachal/kalpa.webp";
 import lansdowneImg from "../assets/uttarakhand/Lansdowne.jpg";
 /* Chandigarh image (stored in src/assets) */
-import chandiImg from "../assets/chandigarh-chardham.webp";
-
+import chandiImg from "../assets/chandigarhImg.jpg";
+import amritsarImg from "../assets/golderTempleImg.jpg";
 export const Uttarakhand = {
   auliImg,
   badrinathImg,
@@ -89,6 +89,7 @@ export const Common = {
   tungnathImg,
   originImg,
   chandiImg,
+  amritsarImg,
 };
 
 export default {

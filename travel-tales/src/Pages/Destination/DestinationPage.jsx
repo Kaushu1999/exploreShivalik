@@ -50,7 +50,7 @@ export default function DestinationPage() {
         { id: 107, name: "Dharamshala", title: "Tibetan Culture", image: Himachal.dharamshalaImg, bestTime: "March to June", activities: ["Monastery"] },
         { id: 108, name: "Dalhousie", title: "Mini Switzerland", image: Himachal.dalhousieImg, bestTime: "March to June", activities: ["Photography"] },
         { id: 109, name: "Chandigarh", title: "Gateway City", image: Common.chandiImg, bestTime: "Year Round", activities: ["City Tours"] },
-        { id: 110, name: "Amritsar", title: "Golden Temple", image: Common.originImg, bestTime: "Oct to March", activities: ["Pilgrimage", "Heritage"] },
+        { id: 110, name: "Amritsar", title: "Golden Temple", image: Common.amritsarImg, bestTime: "Oct to March", activities: ["Pilgrimage", "Heritage"] },
       ],
     },
   ];

@@ -77,14 +77,14 @@ app.post('/api/contact', async (req, res) => {
     await emailTransporter.sendMail({
       from: process.env.EMAIL_USER,
       to: email,
-      subject: 'We Received Your Message - Explore Shivalik',
+      subject: 'We Received Your Message - Explore Shivaliks',
       html: `
         <h2>Thank You for Contacting Us!</h2>
         <p>Hi ${name},</p>
         <p>We have received your message and will get back to you within 24 hours.</p>
         <p><strong>Your Subject:</strong> ${subject}</p>
         <p>In the meantime, if you have any urgent questions, feel free to call us at <strong>+91 81910 04719</strong></p>
-        <p>Best regards,<br>Explore Shivalik Team</p>
+        <p>Best regards,<br>Explore Shivaliks Team</p>
       `,
     });
 

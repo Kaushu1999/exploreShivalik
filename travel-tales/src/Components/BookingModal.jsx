@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FiX, FiCalendar, FiUsers, FiMapPin, FiSend } from "react-icons/fi";
 import emailjs from "@emailjs/browser";
 
-emailjs.init("zZpiZM4Ep1lsPX9sw");
+emailjs.init("XfMXQKqa1yiZHyDod");
 
 export default function BookingModal({
   isOpen,
@@ -63,26 +63,31 @@ End Date: ${bookingData.endDate || "Not specified"}
 Preferences: ${bookingData.preferences || "None"}
       `.trim();
 
-      await emailjs.send("service_xf5d4lj", "template_13igutl", {
-        name: bookingData.name,
-        message: bookingMessage,
-        title: "Booking Request - " + bookingData.destination,
-        email: bookingData.email,
-        to_email: "exploreshivaliks@gmail.com",
-        from_name: bookingData.name,
-        from_email: bookingData.email,
-        phone: bookingData.phone,
-        subject: "Booking Request - " + bookingData.destination,
-        reply_to: bookingData.email,
-      });
+ // 1️⃣ Send booking/contact email to YOU
+await emailjs.send("service_69sh4tz", "template_s6w17i8", {
+  name: bookingData.name,
+  message: bookingMessage,
+  title: "Booking Request - " + bookingData.destination,
+  email: bookingData.email,
+  to_email: "exploreshivaliks@gmail.com",
+  from_name: bookingData.name,
+  from_email: bookingData.email,
+  phone: bookingData.phone,
+  subject: "Booking Request - " + bookingData.destination,
+  reply_to: bookingData.email,
+});
 
-      await emailjs.send("service_xf5d4lj", "template_13igutl", {
-        name: bookingData.name,
-        message: bookingMessage,
-        title: "Booking Request Received",
-        email: bookingData.email,
-        to_email: bookingData.email,
-      });
+
+// 2️⃣ Send auto-reply to USER
+await emailjs.send("service_69sh4tz", "template_m4u00fr", {
+  name: bookingData.name,
+  message: bookingMessage,
+  title: "Booking Request Received",
+  email: bookingData.email,
+  to_email: bookingData.email,   // should match {{to_email}} in template
+  user_name: bookingData.name,
+});
+
 
       setSubmitted(true);
 

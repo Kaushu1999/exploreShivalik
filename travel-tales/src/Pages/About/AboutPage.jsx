@@ -44,7 +44,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-4">About Explore Shivalik</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-4">About Explore Shivaliks</h1>
             <p className="text-xl text-blue-100">
               Your trusted companion for discovering the magic of the Himalayas
             </p>
@@ -61,7 +61,7 @@ export default function AboutPage() {
           >
             <h2 className="text-4xl font-bold text-[#1F3A5F] mb-6">Our Story</h2>
             <p className="text-gray-600 mb-4 leading-relaxed">
-              Explore Shivalik was founded with a simple dream: to share the breathtaking beauty of
+              Explore Shivaliks was founded with a simple dream: to share the breathtaking beauty of
               Uttarakhand and Himachal Pradesh with travelers from around the world. What started as
               a small initiative has grown into a trusted platform serving thousands of happy customers.
             </p>
@@ -131,7 +131,7 @@ export default function AboutPage() {
       </div>
 
       {/* TEAM */}
-      <div className="max-w-6xl mx-auto px-6 py-16">
+      {/* <div className="max-w-6xl mx-auto px-6 py-16">
         <h2 className="text-4xl font-bold text-center text-[#1F3A5F] mb-12">Meet Our Team</h2>
         <div className="grid md:grid-cols-4 gap-8">
           {team.map((member, idx) => (
@@ -148,7 +148,7 @@ export default function AboutPage() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* COMMITMENT */}
       <div className="bg-[#F5F7FA] py-16">

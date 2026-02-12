@@ -12,7 +12,7 @@ function Footer() {
       <div className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-5 gap-12">
         {/* Brand */}
         <div>
-          <h4 className="text-xl font-bold mb-4">Explore Shivalik</h4>
+          <h4 className="text-xl font-bold mb-4">Explore Shivaliks</h4>
           <p className="text-gray-300 text-sm mb-6">
             Your gateway to the most enchanting destinations in the Himalayas. Discover beauty, culture, and adventure.
           </p>
@@ -73,7 +73,7 @@ function Footer() {
           <h4 className="text-lg font-bold mb-6">Our Location</h4>
           <div className="w-full h-40 rounded overflow-hidden border border-gray-600">
             <iframe
-              title="Explore Shivalik Location"
+              title="Explore Shivaliks Location"
               src="https://www.google.com/maps?q=Indra%20Colony%20Lakhanpur%20Road%20Ramnagar%20Nainital%20244715%20Uttarakhand&output=embed"
               width="100%"
               height="100%"

@@ -66,7 +66,7 @@ In the meantime, if you have any urgent questions, feel free to call us at:
 📞 +91 81910 04719
 
 Best regards,
-Explore Shivalik Team
+Explore exploreShivaliks Team
 ```
 
 6. Click **Save**

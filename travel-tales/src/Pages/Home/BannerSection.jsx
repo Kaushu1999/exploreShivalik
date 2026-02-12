@@ -100,7 +100,7 @@ export default function BannerSection() {
                   variants={itemVariants}
                   className="inline-block mb-4 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30"
                 >
-                  <span className="text-sm font-semibold tracking-wide">Welcome to Explore Shivalik</span>
+                  <span className="text-sm font-semibold tracking-wide">Welcome to Explore Shivaliks</span>
                 </motion.div>
 
                 <motion.h2 

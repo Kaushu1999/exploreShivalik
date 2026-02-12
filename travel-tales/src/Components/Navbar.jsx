@@ -14,7 +14,7 @@ export default function Navbar() {
           <div className="w-10 h-10 bg-gradient-to-br from-[#1F3A5F] to-[#2F73B9] rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-lg">ES</span>
           </div>
-          <span className="hidden sm:inline text-xl font-bold text-[#1F3A5F]">Explore Shivalik</span>
+          <span className="hidden sm:inline text-xl font-bold text-[#1F3A5F]">Explore Shivaliks</span>
         </div>
 
         {/* Desktop Menu */}

@@ -6,7 +6,8 @@ import emailjs from "@emailjs/browser";
 import { useLocation } from "react-router-dom";
 
 // Initialize EmailJS (replace with your Public Key from EmailJS dashboard)
-emailjs.init("zZpiZM4Ep1lsPX9sw");
+emailjs.init("XfMXQKqa1yiZHyDod");
+
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -47,47 +48,52 @@ export default function ContactPage() {
     try {
       console.log("📤 Sending email to owner...");
       console.log("Form Data:", formData);
-      
-      // Send email to owner
-      await emailjs.send(
-        "service_xf5d4lj", // Service ID from EmailJS
-        "template_13igutl", // Template ID from EmailJS
-        {
-          // standard fields our template uses
-          name: formData.name,
-          message: formData.message,
-          title: formData.subject,
-          email: formData.email,
+      // 1️⃣ Send email to owner (Contact Us)
+await emailjs.send(
+  "service_69sh4tz",
+  "template_s6w17i8",
+  {
+    name: formData.name,
+    message: formData.message,
+    title: formData.subject,
+    email: formData.email,
 
-          // additional helpful fields
-          to_email: "exploreshivaliks@gmail.com",
-          from_name: formData.name,
-          from_email: formData.email,
-          phone: formData.phone,
-          subject: formData.subject,
-          reply_to: formData.email,
-        }
-      );
-      console.log("✅ Email to owner sent successfully!");
+    // owner details
+    to_email: "exploreshivaliks@gmail.com",
+    from_name: formData.name,
+    from_email: formData.email,
+    phone: formData.phone,
+    subject: formData.subject,
+    reply_to: formData.email,
+  }
+);
 
-      // Send confirmation email to user
-      console.log("📤 Sending confirmation email to user...");
-      await emailjs.send(
-        "service_xf5d4lj",
-        "template_13igutl", // Separate template for confirmation
-        {
-          // match confirmation template variables
-          name: formData.name,
-          message: formData.message,
-          title: formData.subject,
-          email: formData.email,
+console.log("✅ Email to owner sent successfully!");
 
-          to_email: formData.email,
-          user_name: formData.name,
-          user_subject: formData.subject,
-        }
-      );
-      console.log("✅ Confirmation email sent successfully!");
+
+// 2️⃣ Send auto-reply to user
+console.log("📤 Sending confirmation email to user...");
+
+await emailjs.send(
+  "service_69sh4tz",
+  "template_m4u00fr",
+  {
+    name: formData.name,
+    message: formData.message,
+    title: "We received your enquiry",
+    email: formData.email,
+
+    // VERY IMPORTANT: this must match {{to_email}} in template
+    to_email: formData.email,
+
+    // optional fields for template
+    user_name: formData.name,
+    user_subject: formData.subject,
+  }
+);
+
+console.log("✅ Confirmation email sent successfully!");
+
 
       setSubmitted(true);
       setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
